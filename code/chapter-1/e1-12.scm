@@ -1,0 +1,10 @@
+(define (pascar row col)
+  (cond ((> col row) (error "unvalid value")) 
+    ((or (= col 0) (= col row)) 1)
+    (else (+ (pascar (- row 1) (- col 1))
+             (pascar (- row 1) col)))))
+
+(pascar 3 0)            
+(pascar 3 1)            
+(pascar 3 2)
+(pascar 3 3)        
