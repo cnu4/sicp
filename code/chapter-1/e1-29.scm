@@ -4,7 +4,7 @@
     (+ (term a)
        (sum term (next a) next b))))
 
-(define (sinpson f a b n)
+(define (simpson f a b n)
   (define h (/ (- b a) n))
   (define (y k) (f (+ a (* k h))))
   (define (factor k)
@@ -22,5 +22,5 @@
 (define (cube x)
   (* x x x))
 
-(sinpson cube 0.0 1.0 100)
-(sinpson cube 0.0 1.0 1000)
+(simpson cube 0.0 1.0 100)
+(simpson cube 0.0 1.0 1000)
