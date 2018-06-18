@@ -1,0 +1,31 @@
+(define (iterative-improve improve close-enough?)
+  (lambda (guess)
+    (define (try guess)
+      (let ((next (improve guess)))
+        (if (close-enough? guess next)
+          next
+          (try next))))
+    (try guess)))
+
+(define (fixed-point f first-guess)
+  (define (close-enough? v1 v2)
+    (< (abs (- v1 v2)) tolerance))
+  (define tolerance 0.00001)
+  (define (improve x)
+    (f x))
+  ((iterative-improve improve close-enough?) first-guess))
+
+(fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0)
+
+(define (sqrt x)
+  (define (average x y)
+    (/ (+ x y) 2))
+  (define (improve guess)
+    (average guess (/ x guess)))
+  (define (good-enough? old-guess new-guess)
+    (< (/ (abs (- new-guess old-guess))
+          old-guess)
+      0.0001))
+  ((iterative-improve improve good-enough?) 1.0))
+
+(sqrt 2)
