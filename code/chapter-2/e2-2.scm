@@ -37,4 +37,4 @@
   (display ")"))
 
 (define s (make-segment (make-point 1 2) (make-point 3 4)))
-(print-point (midpoint-segment s))
+; (print-point (midpoint-segment s))
