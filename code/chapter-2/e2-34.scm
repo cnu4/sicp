@@ -1,8 +1,4 @@
-(define (accumulate op initial sequence)
-  (if (null? sequence)
-    initial
-    (op (car sequence)
-        (accumulate op initial (cdr sequence)))))
+(load "e2-33.scm")
 
 (define (horner-eval x coefficient-sequence)
   (accumulate (lambda (this-coeff higher-terms) 
