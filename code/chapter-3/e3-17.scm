@@ -1,0 +1,12 @@
+(define (count-pairs x)
+  (define (count-pairs-iter x record-list)
+    (if (and (pair? x) (not (memq x record-list)))
+        (count-pairs-iter (car x)
+          (count-pairs-iter (cdr x)
+            (cons x record-list)))
+      record-list))
+  (length (count-pairs-iter x '())))
+
+(define p1 (cons (cons 1 2) (cons 1 2)))
+(count-pairs p1)
+(count-pairs (cons p1 p1))
