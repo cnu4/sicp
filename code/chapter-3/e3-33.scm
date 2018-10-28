@@ -1,0 +1,17 @@
+(load "e3-33-define-constraint-system.scm")
+
+(define (averager a b c)
+  (let ((sum (make-connector))
+        (h (make-connector)))
+    (adder a b sum)
+    (multiplier sum h c)
+    (constant (/ 1 2) h))
+  'ok)
+
+(define a (make-connector))
+(define b (make-connector))
+(define c (make-connector))
+(averager a b c)
+(probe "c" c)
+(set-value! a 2 'user)
+(set-value! b 2 'user)
